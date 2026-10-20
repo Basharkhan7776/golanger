@@ -23,14 +23,20 @@ interface PanelSizes {
 
 const DEFAULT_PANELS: PanelSizes = {
   sidebarWidth: 260,
-  instructionsWidth: 360,
+  instructionsWidth: 380,
   terminalHeight: 220,
 };
 
 function getSavedPanels(): PanelSizes {
   try {
     const raw = localStorage.getItem(PANEL_STORAGE_KEY);
-    return raw ? { ...DEFAULT_PANELS, ...JSON.parse(raw) } : DEFAULT_PANELS;
+    if (!raw) return DEFAULT_PANELS;
+    const parsed = JSON.parse(raw);
+    return {
+      sidebarWidth: Math.max(160, Math.min(Number(parsed.sidebarWidth) || DEFAULT_PANELS.sidebarWidth, 550)),
+      instructionsWidth: Math.max(250, Math.min(Number(parsed.instructionsWidth) || DEFAULT_PANELS.instructionsWidth, 750)),
+      terminalHeight: Math.max(60, Math.min(Number(parsed.terminalHeight) || DEFAULT_PANELS.terminalHeight, 650)),
+    };
   } catch {
     return DEFAULT_PANELS;
   }

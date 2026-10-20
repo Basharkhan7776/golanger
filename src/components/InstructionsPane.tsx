@@ -68,7 +68,7 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
 
   return (
     <div
-      style={isMobile ? undefined : { width }}
+      style={isMobile ? undefined : { width: `${width}px` }}
       className={cn(
         'flex flex-col bg-[#0c0c0f] select-none overflow-hidden',
         isMobile ? 'w-full h-full flex-1' : 'h-full shrink-0'

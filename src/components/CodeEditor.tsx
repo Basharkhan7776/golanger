@@ -367,7 +367,7 @@ export const CodeEditor: React.FC = () => {
   const showMobileControls = isMobile && (isKeyboardOpen || isEditorFocused);
 
   return (
-    <div className="relative flex flex-col h-full bg-[#09090b] select-none overflow-hidden">
+    <div className="flex-1 flex flex-col min-h-0 min-w-0 h-full w-full bg-[#09090b] select-none overflow-hidden relative">
       {/* Editor Header Bar */}
       <div className="h-9 px-3 border-b border-zinc-800/80 bg-[#0c0c0e] flex items-center justify-between text-xs text-zinc-400 shrink-0">
         <div className="flex items-center gap-2 truncate">
@@ -433,9 +433,10 @@ export const CodeEditor: React.FC = () => {
       </div>
 
       {/* Monaco Editor Container */}
-      <div className="flex-1 relative overflow-hidden">
+      <div className="flex-1 relative overflow-hidden w-full h-full min-h-0 min-w-0">
         <Editor
           height="100%"
+          width="100%"
           language="go"
           value={currentCode}
           onChange={val => updateCode(val || '')}
