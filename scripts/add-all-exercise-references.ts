@@ -1276,6 +1276,11 @@ async function main() {
       ex.references = refs;
       updatedCount++;
 
+      // Append Further information markdown to categoryReadme matching rustal style
+      const baseReadme = (ex.categoryReadme || '').split('## Further information')[0].trim();
+      const furtherInfo = `## Further information\n\n` + refs.map(r => `- [${r.title}](${r.url})`).join('\n');
+      ex.categoryReadme = `${baseReadme}\n\n${furtherInfo}`;
+
       // Also ensure the primary reference URL is documented in starterCode comment if not already present
       const primary = refs[0].url;
       const refComment = `// Official Reference: ${primary}\n`;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {
@@ -12,7 +12,6 @@ import {
   EyeOff,
   ZoomIn,
   ZoomOut,
-  Compass,
 } from 'lucide-react';
 import { useGolang } from '../context/GolangContext';
 import { cn } from '../lib/utils';
@@ -42,6 +41,19 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
 
   const effectiveTab = controlledTab ?? activeTab;
   const [fontSize, setFontSize] = useState<number>(() => getStoredInstructionsFontSize(12));
+
+  const theoryMarkdown = useMemo(() => {
+    let content = currentExercise.categoryReadme || '';
+    if (currentExercise.references && currentExercise.references.length > 0) {
+      if (!content.includes('## Further information')) {
+        const links = currentExercise.references
+          .map(ref => `- [${ref.title}](${ref.url})`)
+          .join('\n');
+        content = `${content.trim()}\n\n## Further information\n\n${links}`;
+      }
+    }
+    return content;
+  }, [currentExercise.categoryReadme, currentExercise.references]);
 
   const handleZoomIn = () => {
     setFontSize(prev => {
@@ -181,84 +193,33 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
               )}
             </div>
 
-            {/* Official Documentation & References */}
-            {currentExercise.references && currentExercise.references.length > 0 && (
-              <div className="border border-zinc-800/80 bg-zinc-900/40 rounded-xl p-3.5 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold uppercase tracking-wider text-blue-400 text-[11px] flex items-center gap-1.5">
-                    <Compass className="w-3.5 h-3.5 text-blue-400" />
-                    Official Documentation & References
-                  </h3>
-                  <span className="text-[10px] text-zinc-400 font-mono">
-                    {currentExercise.references.length} link{currentExercise.references.length > 1 ? 's' : ''}
-                  </span>
-                </div>
-
-                <div className="space-y-2">
-                  {currentExercise.references.map((ref, idx) => {
-                    let domain = 'go.dev';
-                    try {
-                      domain = new URL(ref.url).hostname.replace(/^www\./, '');
-                    } catch {}
-
-                    return (
-                      <a
-                        key={idx}
-                        href={ref.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col p-2.5 rounded-lg border border-zinc-800/90 bg-[#0e0e12] hover:bg-zinc-850 hover:border-blue-500/50 transition-all text-left block no-underline"
-                      >
-                        <div className="flex items-center justify-between gap-2 mb-1">
-                          <div className="flex items-center gap-2 min-w-0">
-                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-zinc-800 text-blue-300 border border-blue-900/40 shrink-0">
-                              {domain}
-                            </span>
-                            {ref.isOfficial && (
-                              <span className="text-[9px] font-medium px-1.5 py-0.2 rounded bg-blue-950/80 text-blue-300 border border-blue-800/60 shrink-0">
-                                Official
-                              </span>
-                            )}
-                            <span className="text-xs font-medium text-zinc-200 group-hover:text-blue-300 transition-colors truncate">
-                              {ref.title}
-                            </span>
-                          </div>
-                          <ExternalLink className="w-3 h-3 text-zinc-400 group-hover:text-blue-400 shrink-0 transition-transform group-hover:translate-x-0.5" />
-                        </div>
-                        {ref.description && (
-                          <p className="text-[11px] text-zinc-400 group-hover:text-zinc-300 line-clamp-2 leading-relaxed">
-                            {ref.description}
-                          </p>
-                        )}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
             {/* Category Theory Markdown */}
-            {currentExercise.categoryReadme && (
+            {theoryMarkdown && (
               <div className="border border-zinc-800/80 bg-zinc-900/20 rounded-xl p-3.5 space-y-2">
-                <h3 className="font-semibold uppercase tracking-wider text-blue-400 text-[11px]">
+                <h3 className="font-semibold uppercase tracking-wider text-zinc-400 text-[11px]">
                   Topic Guide: {currentExercise.categoryTitle}
                 </h3>
                 <div
                   style={{ fontSize: `${fontSize}px` }}
-                  className="prose prose-invert max-w-none text-zinc-300 [&_h1]:font-bold [&_h2]:font-semibold [&_h2]:mt-2.5 [&_h2]:mb-1 [&_p]:my-1.5 [&_ul]:my-1 [&_ul]:pl-4 [&_li]:my-0.5 [&_code]:bg-zinc-850 [&_code]:border [&_code]:border-zinc-800 [&_code]:px-1 [&_code]:py-0.2 [&_code]:rounded [&_code]:text-blue-300 [&_a]:text-blue-400 [&_a]:underline"
+                  className="prose prose-invert max-w-none text-zinc-300 [&_h1]:font-bold [&_h2]:font-semibold [&_h2]:mt-2.5 [&_h2]:mb-1 [&_p]:my-1.5 [&_ul]:my-1 [&_ul]:pl-4 [&_li]:my-0.5 [&_code]:bg-zinc-850 [&_code]:border [&_code]:border-zinc-800 [&_code]:px-1 [&_code]:py-0.2 [&_code]:rounded [&_code]:text-zinc-200 [&_a]:text-zinc-200 [&_a]:underline"
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node: _node, ...props }) => (
-                        <a {...props} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300">
+                        <a
+                          {...props}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-zinc-200 hover:text-white"
+                        >
                           {props.children}
-                          <ExternalLink className="w-2.5 h-2.5 inline" />
+                          <ExternalLink className="w-2.5 h-2.5 inline text-zinc-400" />
                         </a>
                       ),
                     }}
                   >
-                    {currentExercise.categoryReadme}
+                    {theoryMarkdown}
                   </ReactMarkdown>
                 </div>
               </div>
@@ -302,30 +263,6 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
                 </div>
               )}
             </div>
-
-            {/* Hint Docs Shortcut */}
-            {currentExercise.references && currentExercise.references.length > 0 && (
-              <div className="border border-zinc-800/80 bg-zinc-900/30 rounded-xl p-3 space-y-2">
-                <span className="text-[11px] font-semibold text-blue-400 flex items-center gap-1.5 uppercase tracking-wider">
-                  <Compass className="w-3 h-3 text-blue-400" />
-                  Documentation Reference
-                </span>
-                <div className="space-y-1.5">
-                  {currentExercise.references.slice(0, 2).map((ref, idx) => (
-                    <a
-                      key={idx}
-                      href={ref.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between text-xs text-zinc-300 hover:text-blue-300 bg-[#0e0e12] border border-zinc-800/80 hover:border-blue-500/50 p-2 rounded-lg transition-all"
-                    >
-                      <span className="truncate text-xs font-medium">{ref.title}</span>
-                      <ExternalLink className="w-3 h-3 ml-2 shrink-0 text-zinc-400" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         )}
 
