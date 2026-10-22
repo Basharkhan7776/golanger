@@ -14,6 +14,7 @@ import {
 import { useGolang } from '../context/GolangContext';
 import { Button } from './ui/Button';
 import { Tooltip } from './ui/Tooltip';
+import { GoLogo } from './ui/GoLogo';
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -48,11 +49,11 @@ export const Header: React.FC = () => {
     <header className="h-12 border-b border-zinc-800/80 bg-[#09090b] px-3 flex items-center justify-between gap-2 select-none shrink-0 z-20">
       {/* ================= DESKTOP HEADER LEFT ================= */}
       <div className="hidden md:flex items-center gap-3 min-w-0">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-md bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 font-bold text-xs">
-            🐹
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center p-1 shadow-xs">
+            <GoLogo size="sm" variant="blue" />
           </div>
-          <span className="font-semibold text-sm text-zinc-100 tracking-tight leading-tight">
+          <span className="font-bold text-sm text-white tracking-tight leading-tight">
             Golanger
           </span>
         </div>
@@ -63,7 +64,7 @@ export const Header: React.FC = () => {
         <div className="flex items-center gap-1.5 text-xs text-zinc-400 truncate">
           <span className="text-zinc-500">{currentExercise.categoryTitle}</span>
           <span className="text-zinc-600">/</span>
-          <span className="font-medium text-cyan-400 truncate">{currentExercise.title}</span>
+          <span className="font-medium text-blue-400 truncate">{currentExercise.title}</span>
         </div>
       </div>
 
@@ -73,20 +74,20 @@ export const Header: React.FC = () => {
           variant="ghost"
           size="icon"
           onClick={toggleMobileSidebar}
-          className="h-8 w-8 text-zinc-400 hover:text-zinc-100 shrink-0"
+          className="h-8 w-8 text-zinc-400 hover:text-white shrink-0"
           aria-label="Open Curriculum Modules"
         >
           <Menu className="w-4 h-4 text-zinc-400" />
         </Button>
 
         <div className="flex items-center gap-1.5 shrink-0">
-          <span className="text-sm">🐹</span>
-          <span className="font-semibold text-sm text-zinc-100 tracking-tight leading-tight hidden xs:inline">
+          <GoLogo size="xs" variant="blue" />
+          <span className="font-bold text-sm text-white tracking-tight leading-tight hidden xs:inline">
             Golanger
           </span>
         </div>
 
-        <span className="font-mono text-[11px] text-zinc-300 bg-zinc-850 px-2 py-0.5 rounded border border-zinc-800 truncate max-w-[120px]">
+        <span className="font-mono text-[11px] text-zinc-200 bg-zinc-850 px-2 py-0.5 rounded border border-zinc-800 truncate max-w-[120px]">
           {currentExercise.title}
         </span>
       </div>
@@ -96,13 +97,13 @@ export const Header: React.FC = () => {
         <div className="flex-1">
           <div className="flex items-center justify-between text-[11px] text-zinc-400 mb-1">
             <span className="text-zinc-400 font-medium">Progress</span>
-            <span className="font-mono text-cyan-400">
+            <span className="font-mono text-blue-400 font-semibold">
               {completedCount} / {totalCount} ({progressPercent}%)
             </span>
           </div>
-          <div className="h-1.5 w-full bg-zinc-800/80 rounded-full overflow-hidden">
+          <div className="h-1.5 w-full bg-zinc-850 rounded-full overflow-hidden border border-zinc-800">
             <div
-              className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300 ease-out rounded-full"
+              className="h-full bg-gradient-to-r from-blue-600 to-[#00ADD8] transition-all duration-300 ease-out rounded-full shadow-xs shadow-blue-500/20"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -114,7 +115,7 @@ export const Header: React.FC = () => {
         {/* Run button */}
         <Tooltip content={currentExercise.mode === 'test' ? 'Run Tests' : 'Run Program'} shortcut={getShortcut('⌘↵', 'Ctrl+↵')}>
           <Button
-            variant="cyan"
+            variant="blue"
             size="sm"
             onClick={runCode}
             disabled={isRunning}
@@ -133,7 +134,7 @@ export const Header: React.FC = () => {
             variant="secondary"
             size="icon"
             onClick={() => setShowCommandPalette(true)}
-            className="h-8 w-8 text-zinc-400 hover:text-zinc-100"
+            className="h-8 w-8 text-zinc-400 hover:text-white"
           >
             <Search className="w-4 h-4 text-zinc-400" />
           </Button>
@@ -147,7 +148,7 @@ export const Header: React.FC = () => {
               size="icon"
               disabled={currentExercise.order <= 1}
               onClick={prevExercise}
-              className="h-7 w-7 text-zinc-400 hover:text-zinc-100"
+              className="h-7 w-7 text-zinc-400 hover:text-white"
             >
               <ChevronLeft className="w-4 h-4 text-zinc-400" />
             </Button>
@@ -159,7 +160,7 @@ export const Header: React.FC = () => {
               size="icon"
               disabled={currentExercise.order >= totalCount}
               onClick={nextExercise}
-              className="h-7 w-7 text-zinc-400 hover:text-zinc-100"
+              className="h-7 w-7 text-zinc-400 hover:text-white"
             >
               <ChevronRight className="w-4 h-4 text-zinc-400" />
             </Button>
@@ -172,7 +173,7 @@ export const Header: React.FC = () => {
             variant="ghost"
             size="icon"
             onClick={resetCurrentCode}
-            className="h-8 w-8 text-zinc-400 hover:text-zinc-100"
+            className="h-8 w-8 text-zinc-400 hover:text-white"
           >
             <RotateCcw className="w-4 h-4 text-zinc-400" />
           </Button>
@@ -184,10 +185,10 @@ export const Header: React.FC = () => {
             variant="ghost"
             size="icon"
             onClick={() => toggleBookmark(currentExercise.id)}
-            className="h-8 w-8 text-zinc-400 hover:text-zinc-100"
+            className="h-8 w-8 text-zinc-400 hover:text-white"
           >
             <Bookmark
-              className={`w-4 h-4 ${isBookmarked ? 'fill-cyan-400 text-cyan-400' : 'text-zinc-400'}`}
+              className={`w-4 h-4 ${isBookmarked ? 'fill-blue-400 text-blue-400' : 'text-zinc-400'}`}
             />
           </Button>
         </Tooltip>
@@ -198,10 +199,10 @@ export const Header: React.FC = () => {
             variant="ghost"
             size="icon"
             onClick={() => toggleCompleted(currentExercise.id)}
-            className="h-8 w-8 text-zinc-400 hover:text-zinc-100"
+            className="h-8 w-8 text-zinc-400 hover:text-white"
           >
             <CheckCircle2
-              className={`w-4 h-4 ${isCompleted ? 'text-emerald-400 fill-emerald-950/80' : 'text-zinc-400'}`}
+              className={`w-4 h-4 ${isCompleted ? 'text-blue-400 fill-blue-950/80' : 'text-zinc-400'}`}
             />
           </Button>
         </Tooltip>
@@ -212,7 +213,7 @@ export const Header: React.FC = () => {
             variant="ghost"
             size="icon"
             onClick={() => setShowSettingsModal(true)}
-            className="h-8 w-8 text-zinc-400 hover:text-zinc-100"
+            className="h-8 w-8 text-zinc-400 hover:text-white"
           >
             <Settings className="w-4 h-4 text-zinc-400" />
           </Button>
@@ -222,7 +223,7 @@ export const Header: React.FC = () => {
       {/* ================= MOBILE CONTROLS ================= */}
       <div className="flex md:hidden items-center gap-1.5 shrink-0">
         <Button
-          variant="cyan"
+          variant="blue"
           size="sm"
           onClick={runCode}
           disabled={isRunning}

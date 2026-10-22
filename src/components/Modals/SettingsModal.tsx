@@ -79,7 +79,7 @@ export const SettingsModal: React.FC = () => {
       }}
       title={
         <div className="flex items-center gap-2">
-          <Settings className="w-4 h-4 text-cyan-400" />
+          <Settings className="w-4 h-4 text-blue-400" />
           <span>Dashboard & Settings</span>
         </div>
       }
@@ -93,7 +93,7 @@ export const SettingsModal: React.FC = () => {
         {/* Editor Preferences */}
         <div className="space-y-2.5">
           <h4 className="font-semibold uppercase tracking-wider text-[10px] text-zinc-400 flex items-center gap-1.5">
-            <Keyboard className="w-3 h-3 text-cyan-400" />
+            <Keyboard className="w-3 h-3 text-blue-400" />
             Editor Preferences
           </h4>
 
@@ -111,7 +111,7 @@ export const SettingsModal: React.FC = () => {
                     onClick={() => updateSettings({ fontSize: size })}
                     className={`px-2.5 py-1 rounded text-[11px] font-mono transition-colors ${
                       settings.fontSize === size
-                        ? 'bg-cyan-500 text-zinc-950 font-bold'
+                        ? 'bg-blue-600 text-white font-bold'
                         : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'
                     }`}
                   >
@@ -160,14 +160,14 @@ export const SettingsModal: React.FC = () => {
         {/* Shortcuts Reference Grid */}
         <div className="space-y-2.5">
           <h4 className="font-semibold uppercase tracking-wider text-[10px] text-zinc-400 flex items-center gap-1.5">
-            <Command className="w-3 h-3 text-cyan-400" />
+            <Command className="w-3 h-3 text-blue-400" />
             Keyboard Shortcuts
           </h4>
           <div className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <div className="flex items-center justify-between p-2 rounded-lg bg-[#121215] border border-zinc-800/80">
                 <span className="text-zinc-300 text-[11px]">Run Program / Tests</span>
-                <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-zinc-850 text-cyan-300 border border-zinc-700/80 rounded">
+                <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-zinc-850 text-blue-300 border border-zinc-700/80 rounded">
                   {settings.keymapPlatform === 'mac' ? '⌘↵' : 'Ctrl+Enter'}
                 </kbd>
               </div>
@@ -213,7 +213,7 @@ export const SettingsModal: React.FC = () => {
         {/* Local Storage & Backup */}
         <div className="space-y-2.5">
           <h4 className="font-semibold uppercase tracking-wider text-[10px] text-zinc-400 flex items-center gap-1.5">
-            <HardDrive className="w-3 h-3 text-cyan-400" />
+            <HardDrive className="w-3 h-3 text-blue-400" />
             Data & Backup Management
           </h4>
 
@@ -251,7 +251,7 @@ export const SettingsModal: React.FC = () => {
             </div>
 
             {importStatus && (
-              <div className="p-2 rounded-lg bg-zinc-950 border border-cyan-800/60 text-cyan-300 text-xs font-mono">
+              <div className="p-2 rounded-lg bg-zinc-950 border border-blue-800/60 text-blue-300 text-xs font-mono">
                 {importStatus}
               </div>
             )}

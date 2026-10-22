@@ -78,9 +78,9 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
       <div className="h-9 px-3 border-b border-zinc-800/80 bg-[#09090b] flex items-center justify-between shrink-0">
         {isMobile ? (
           <div className="flex items-center gap-1.5 text-xs font-medium text-zinc-200">
-            {effectiveTab === 'theory' && <BookOpen className="w-3.5 h-3.5 text-cyan-400" />}
-            {effectiveTab === 'hint' && <HelpCircle className="w-3.5 h-3.5 text-amber-400" />}
-            {effectiveTab === 'solution' && <Sparkles className="w-3.5 h-3.5 text-emerald-400" />}
+            {effectiveTab === 'theory' && <BookOpen className="w-3.5 h-3.5 text-blue-400" />}
+            {effectiveTab === 'hint' && <HelpCircle className="w-3.5 h-3.5 text-blue-400" />}
+            {effectiveTab === 'solution' && <Sparkles className="w-3.5 h-3.5 text-blue-400" />}
             <span className="capitalize">{effectiveTab === 'theory' ? 'Theory & Guide' : effectiveTab === 'hint' ? 'Hint' : 'Solution'}</span>
           </div>
         ) : (
@@ -90,11 +90,11 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
               className={cn(
                 'px-2.5 py-1 rounded-md text-[11px] font-medium transition-all flex items-center gap-1.5',
                 effectiveTab === 'theory'
-                  ? 'bg-zinc-800 text-cyan-300 shadow-xs'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                  ? 'bg-blue-600 text-white shadow-xs shadow-blue-500/20'
+                  : 'text-zinc-400 hover:text-white'
               )}
             >
-              <BookOpen className="w-3 h-3 text-cyan-400" />
+              <BookOpen className="w-3 h-3 text-blue-300" />
               Theory
             </button>
             <button
@@ -102,11 +102,11 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
               className={cn(
                 'px-2.5 py-1 rounded-md text-[11px] font-medium transition-all flex items-center gap-1.5',
                 effectiveTab === 'hint'
-                  ? 'bg-zinc-800 text-amber-300 shadow-xs'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                  ? 'bg-blue-600 text-white shadow-xs shadow-blue-500/20'
+                  : 'text-zinc-400 hover:text-white'
               )}
             >
-              <HelpCircle className="w-3 h-3 text-amber-400" />
+              <HelpCircle className="w-3 h-3 text-blue-300" />
               Hint
             </button>
             <button
@@ -114,11 +114,11 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
               className={cn(
                 'px-2.5 py-1 rounded-md text-[11px] font-medium transition-all flex items-center gap-1.5',
                 effectiveTab === 'solution'
-                  ? 'bg-zinc-800 text-emerald-300 shadow-xs'
-                  : 'text-zinc-400 hover:text-zinc-200'
+                  ? 'bg-blue-600 text-white shadow-xs shadow-blue-500/20'
+                  : 'text-zinc-400 hover:text-white'
               )}
             >
-              <Sparkles className="w-3 h-3 text-emerald-400" />
+              <Sparkles className="w-3 h-3 text-blue-300" />
               Solution
             </button>
           </div>
@@ -183,18 +183,18 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
             {/* Category Theory Markdown */}
             {currentExercise.categoryReadme && (
               <div className="border border-zinc-800/80 bg-zinc-900/20 rounded-xl p-3.5 space-y-2">
-                <h3 className="font-semibold uppercase tracking-wider text-cyan-400 text-[11px]">
+                <h3 className="font-semibold uppercase tracking-wider text-blue-400 text-[11px]">
                   Topic Guide: {currentExercise.categoryTitle}
                 </h3>
                 <div
                   style={{ fontSize: `${fontSize}px` }}
-                  className="prose prose-invert max-w-none text-zinc-300 [&_h1]:font-bold [&_h2]:font-semibold [&_h2]:mt-2.5 [&_h2]:mb-1 [&_p]:my-1.5 [&_ul]:my-1 [&_ul]:pl-4 [&_li]:my-0.5 [&_code]:bg-zinc-850 [&_code]:border [&_code]:border-zinc-800 [&_code]:px-1 [&_code]:py-0.2 [&_code]:rounded [&_code]:text-cyan-300 [&_a]:text-cyan-400 [&_a]:underline"
+                  className="prose prose-invert max-w-none text-zinc-300 [&_h1]:font-bold [&_h2]:font-semibold [&_h2]:mt-2.5 [&_h2]:mb-1 [&_p]:my-1.5 [&_ul]:my-1 [&_ul]:pl-4 [&_li]:my-0.5 [&_code]:bg-zinc-850 [&_code]:border [&_code]:border-zinc-800 [&_code]:px-1 [&_code]:py-0.2 [&_code]:rounded [&_code]:text-blue-300 [&_a]:text-blue-400 [&_a]:underline"
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node: _node, ...props }) => (
-                        <a {...props} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-200">
+                        <a {...props} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300">
                           {props.children}
                           <ExternalLink className="w-2.5 h-2.5 inline" />
                         </a>
@@ -214,7 +214,7 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
             <div className="border border-zinc-800/80 bg-zinc-900/40 rounded-xl p-3.5 space-y-2.5">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-zinc-200 flex items-center gap-1.5 text-[12px]">
-                  <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
+                  <HelpCircle className="w-3.5 h-3.5 text-blue-400" />
                   Official Hint
                 </span>
                 <Button
@@ -236,7 +236,7 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
               </div>
 
               {hintRevealed ? (
-                <div className="p-3 bg-zinc-950/80 rounded-lg border border-amber-900/30 text-amber-200/90 text-xs font-mono whitespace-pre-line leading-relaxed">
+                <div className="p-3 bg-zinc-950/80 rounded-lg border border-blue-900/40 text-blue-200/90 text-xs font-mono whitespace-pre-line leading-relaxed">
                   {currentExercise.hint || 'No hint available for this exercise.'}
                 </div>
               ) : (
@@ -253,7 +253,7 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
             <div className="border border-zinc-800/80 bg-zinc-900/40 rounded-xl p-3.5 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-zinc-200 flex items-center gap-1.5 text-[12px]">
-                  <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                  <Sparkles className="w-3.5 h-3.5 text-blue-400" />
                   Reference Solution
                 </span>
                 <Button
@@ -283,11 +283,11 @@ export const InstructionsPane: React.FC<InstructionsPaneProps> = ({
                       onClick={handleCopySolution}
                       className="h-6 text-[10px] gap-1 px-2"
                     >
-                      {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                      {copied ? <Check className="w-3 h-3 text-blue-400" /> : <Copy className="w-3 h-3" />}
                       <span>{copied ? 'Copied' : 'Copy'}</span>
                     </Button>
                     <Button
-                      variant="primary"
+                      variant="blue"
                       size="sm"
                       onClick={applySolution}
                       className="h-6 text-[10px] gap-1 px-2 font-semibold"

@@ -106,30 +106,30 @@ export const ActivityHeatmap: React.FC = () => {
 
   const getColorClass = (count: number) => {
     if (count === 0) return 'bg-[#18181b] border-zinc-800/60';
-    if (count === 1) return 'bg-cyan-950 text-cyan-300 border-cyan-800/60';
-    if (count <= 3) return 'bg-cyan-800 text-cyan-200 border-cyan-700';
-    if (count <= 5) return 'bg-cyan-600 text-white border-cyan-500';
-    return 'bg-cyan-400 text-zinc-950 border-cyan-300 shadow-xs shadow-cyan-400/20';
+    if (count === 1) return 'bg-blue-950 text-blue-300 border-blue-900/60';
+    if (count <= 3) return 'bg-blue-800 text-blue-200 border-blue-700';
+    if (count <= 5) return 'bg-blue-600 text-white border-blue-500';
+    return 'bg-sky-400 text-black border-sky-300 shadow-xs shadow-sky-400/20';
   };
 
   return (
     <div className="border border-zinc-800 rounded-xl bg-[#121215] p-3.5 space-y-3.5 select-none">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-cyan-400" />
+          <Calendar className="w-4 h-4 text-blue-400" />
           <h4 className="text-xs font-semibold text-zinc-100">Learning Activity & Streak</h4>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-zinc-400">
           <span className="flex items-center gap-1">
-            <Flame className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+            <Flame className="w-3.5 h-3.5 text-blue-400 fill-blue-400" />
             <strong className="text-zinc-200">{stats.currentStreak}</strong> day streak
           </span>
           <span className="hidden sm:flex items-center gap-1">
-            <Award className="w-3.5 h-3.5 text-cyan-400" />
+            <Award className="w-3.5 h-3.5 text-blue-400" />
             <strong className="text-zinc-200">{stats.longestStreak}</strong> best
           </span>
           <span className="flex items-center gap-1">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
             <strong className="text-zinc-200">{completedCount}</strong> solved
           </span>
         </div>
@@ -167,10 +167,10 @@ export const ActivityHeatmap: React.FC = () => {
         <div className="flex items-center gap-1">
           <span>Less</span>
           <div className="w-2 h-2 rounded-[2px] bg-[#18181b] border border-zinc-800/60" />
-          <div className="w-2 h-2 rounded-[2px] bg-cyan-950 border border-cyan-800/60" />
-          <div className="w-2 h-2 rounded-[2px] bg-cyan-800 border border-cyan-700" />
-          <div className="w-2 h-2 rounded-[2px] bg-cyan-600 border border-cyan-500" />
-          <div className="w-2 h-2 rounded-[2px] bg-cyan-400 border border-cyan-300" />
+          <div className="w-2 h-2 rounded-[2px] bg-blue-950 border border-blue-800/60" />
+          <div className="w-2 h-2 rounded-[2px] bg-blue-800 border border-blue-700" />
+          <div className="w-2 h-2 rounded-[2px] bg-blue-600 border border-blue-500" />
+          <div className="w-2 h-2 rounded-[2px] bg-sky-400 border border-sky-300" />
           <span>More</span>
         </div>
       </div>

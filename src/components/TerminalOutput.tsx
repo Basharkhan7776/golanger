@@ -84,14 +84,14 @@ export const TerminalOutput: React.FC<TerminalOutputProps> = ({
 
           {/* Status Indicator */}
           {isRunning ? (
-            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-cyan-300 bg-cyan-950/40 px-2 py-0.5 rounded-md border border-cyan-800/40">
-              <Loader2 className="w-3 h-3 animate-spin text-cyan-400" />
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-300 bg-blue-950/40 px-2 py-0.5 rounded-md border border-blue-800/40">
+              <Loader2 className="w-3 h-3 animate-spin text-blue-400" />
               Executing...
             </span>
           ) : lastResult ? (
             lastResult.success ? (
-              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-300 bg-emerald-950/40 px-2 py-0.5 rounded-md border border-emerald-800/40">
-                <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+              <span className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-300 bg-blue-950/40 px-2 py-0.5 rounded-md border border-blue-800/40">
+                <CheckCircle2 className="w-3 h-3 text-blue-400" />
                 Passed
               </span>
             ) : (
@@ -164,7 +164,7 @@ export const TerminalOutput: React.FC<TerminalOutputProps> = ({
       {showBody && (
         <div className="flex-1 overflow-auto p-3 font-mono text-zinc-300 select-text leading-relaxed bg-[#09090b]">
           {isRunning ? (
-            <div className="flex items-center gap-2 text-cyan-400/80 animate-pulse text-xs">
+            <div className="flex items-center gap-2 text-blue-400/80 animate-pulse text-xs">
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
               <span>Running Go compiler / tests...</span>
             </div>
@@ -191,13 +191,13 @@ export const TerminalOutput: React.FC<TerminalOutputProps> = ({
 
               {/* Success celebration card */}
               {lastResult.success && (
-                <div className="mt-3 p-3 rounded-lg border border-emerald-900/40 bg-emerald-950/20 flex items-center justify-between gap-3 text-xs">
-                  <div className="flex items-center gap-2 text-emerald-300 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <div className="mt-3 p-3 rounded-lg border border-blue-900/40 bg-blue-950/20 flex items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2 text-blue-300 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                     <span>Exercise completed successfully! Great work!</span>
                   </div>
                   <Button
-                    variant="cyan"
+                    variant="blue"
                     size="sm"
                     onClick={nextExercise}
                     className="gap-1.5 font-semibold text-xs"

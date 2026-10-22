@@ -37,7 +37,7 @@ export const SolutionModal: React.FC = () => {
       onClose={handleClose}
       title={
         <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-cyan-400" />
+          <Sparkles className="w-4 h-4 text-blue-400" />
           <span>Solution: {currentExercise.title}</span>
         </div>
       }
@@ -47,7 +47,7 @@ export const SolutionModal: React.FC = () => {
       {!confirmed ? (
         <div className="space-y-4 py-2">
           <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 flex items-start gap-3">
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+            <AlertTriangle className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
             <div className="space-y-1">
               <h4 className="text-xs font-semibold text-zinc-200">
                 Reveal solution?
@@ -63,10 +63,10 @@ export const SolutionModal: React.FC = () => {
               Go back
             </Button>
             <Button
-              variant="cyan"
+              variant="blue"
               size="sm"
               onClick={() => setConfirmed(true)}
-              className="font-semibold text-zinc-950"
+              className="font-semibold text-white"
             >
               Reveal Solution
             </Button>
@@ -86,7 +86,7 @@ export const SolutionModal: React.FC = () => {
             >
               {copied ? (
                 <>
-                  <Check className="w-3 h-3 text-emerald-400" />
+                  <Check className="w-3 h-3 text-blue-400" />
                   <span>Copied</span>
                 </>
               ) : (
@@ -107,10 +107,10 @@ export const SolutionModal: React.FC = () => {
                 Close
               </Button>
               <Button
-                variant="cyan"
+                variant="blue"
                 size="sm"
                 onClick={handleApply}
-                className="gap-1.5 font-semibold text-zinc-950"
+                className="gap-1.5 font-semibold text-white"
               >
                 <span>Apply to Editor</span>
                 <ArrowRight className="w-3 h-3" />

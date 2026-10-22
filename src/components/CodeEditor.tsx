@@ -317,7 +317,7 @@ export const CodeEditor: React.FC = () => {
         'editor.foreground': '#f4f4f5',
         'editorLineNumber.foreground': '#52525b',
         'editorLineNumber.activeForeground': '#00ADD8',
-        'editor.selectionBackground': '#27272a',
+        'editor.selectionBackground': '#1e3a8a66',
         'editor.lineHighlightBackground': '#121215',
         'editorCursor.foreground': '#00ADD8',
         'editorIndentGuide.background': '#1f1f23',
@@ -371,13 +371,13 @@ export const CodeEditor: React.FC = () => {
       {/* Editor Header Bar */}
       <div className="h-9 px-3 border-b border-zinc-800/80 bg-[#0c0c0e] flex items-center justify-between text-xs text-zinc-400 shrink-0">
         <div className="flex items-center gap-2 truncate">
-          <FileCode className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+          <FileCode className="w-3.5 h-3.5 text-blue-400 shrink-0" />
           <span className="font-mono text-zinc-300 truncate">{currentExercise.filename}</span>
           <span className="text-[10px] text-zinc-400 bg-zinc-850 px-1.5 py-0.2 rounded border border-zinc-800 shrink-0">
             Go
           </span>
           {currentExercise.mode === 'test' && (
-            <span className="text-[10px] text-amber-400 bg-amber-950/40 px-1.5 py-0.2 rounded border border-amber-800/40 shrink-0">
+            <span className="text-[10px] text-blue-300 bg-blue-950/60 px-1.5 py-0.2 rounded border border-blue-800/60 shrink-0 font-medium">
               test
             </span>
           )}
@@ -419,7 +419,7 @@ export const CodeEditor: React.FC = () => {
           {/* Run button */}
           <Tooltip content={currentExercise.mode === 'test' ? 'Run Tests' : 'Run Code'} shortcut={getShortcut('⌘↵', 'Ctrl+↵')}>
             <Button
-              variant="cyan"
+              variant="blue"
               size="sm"
               onClick={runCode}
               disabled={isRunning}
@@ -497,7 +497,7 @@ export const CodeEditor: React.FC = () => {
               style={{
                 transform: `translate(${joystickPos.x}px, ${joystickPos.y}px)`,
               }}
-              className="w-3.5 h-3.5 rounded-full bg-cyan-400 shadow-xs pointer-events-none transition-transform duration-75"
+              className="w-3.5 h-3.5 rounded-full bg-blue-500 shadow-xs shadow-blue-500/50 pointer-events-none transition-transform duration-75"
             />
           </div>
 

@@ -70,7 +70,7 @@ export const CommandPalette: React.FC = () => {
       >
         {/* Search Input Bar */}
         <div className="p-3 border-b border-zinc-800 flex items-center gap-2.5 bg-[#0e0e11]">
-          <Search className="w-4 h-4 text-cyan-400 shrink-0" />
+          <Search className="w-4 h-4 text-blue-400 shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -108,13 +108,13 @@ export const CommandPalette: React.FC = () => {
                   className={cn(
                     'px-3 py-2 rounded-lg text-xs flex items-center justify-between gap-3 cursor-pointer select-none transition-all',
                     isSelected
-                      ? 'bg-zinc-800/90 text-zinc-100 border border-zinc-700'
+                      ? 'bg-blue-950/40 text-white border border-blue-800/60'
                       : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-850/60 border border-transparent'
                   )}
                 >
                   <div className="flex items-center gap-2.5 truncate">
                     {isDone ? (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                     ) : (
                       <Circle className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
                     )}
@@ -125,11 +125,11 @@ export const CommandPalette: React.FC = () => {
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0">
-                    <Badge variant={ex.mode === 'test' ? 'warning' : 'outline'} size="sm">
+                    <Badge variant={ex.mode === 'test' ? 'blue' : 'outline'} size="sm">
                       {ex.mode}
                     </Badge>
                     {isSelected && (
-                      <CornerDownLeft className="w-3 h-3 text-cyan-400" />
+                      <CornerDownLeft className="w-3 h-3 text-blue-400" />
                     )}
                   </div>
                 </div>

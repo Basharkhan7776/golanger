@@ -2,17 +2,18 @@ import React from 'react';
 import { cn } from '../../lib/utils';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'cyan';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'cyan' | 'blue';
   size?: 'sm' | 'md' | 'lg' | 'icon';
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'secondary', size = 'md', children, disabled, ...props }, ref) => {
-    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 rounded-lg select-none cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none disabled:cursor-not-allowed';
+    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 rounded-lg select-none cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-500 active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none disabled:cursor-not-allowed';
 
     const variants = {
-      primary: 'bg-zinc-100 hover:bg-white text-zinc-950 font-semibold shadow-xs border border-zinc-200',
-      cyan: 'bg-cyan-500 hover:bg-cyan-400 text-zinc-950 font-semibold shadow-xs border border-cyan-400',
+      primary: 'bg-white hover:bg-zinc-100 text-black font-semibold shadow-xs border border-zinc-200',
+      blue: 'bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-xs border border-blue-500 shadow-blue-500/20',
+      cyan: 'bg-[#00ADD8] hover:bg-[#38bdf8] text-black font-semibold shadow-xs border border-[#00ADD8] shadow-sky-500/20',
       secondary: 'bg-[#18181b] hover:bg-zinc-800 text-zinc-200 border border-zinc-800 hover:border-zinc-700',
       outline: 'bg-transparent hover:bg-zinc-800/70 text-zinc-300 border border-zinc-800 hover:border-zinc-700',
       ghost: 'bg-transparent hover:bg-zinc-800/80 text-zinc-400 hover:text-zinc-100',

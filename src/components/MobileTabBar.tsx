@@ -52,24 +52,24 @@ export const MobileTabBar: React.FC<MobileTabBarProps> = ({ hidden = false }) =>
               className={cn(
                 'relative flex flex-col items-center justify-center min-h-[44px] py-1 px-1 rounded-lg text-[10px] transition-all select-none',
                 isActive
-                  ? 'bg-zinc-800/90 text-cyan-300 font-semibold border border-zinc-700/60 shadow-xs'
+                  ? 'bg-blue-950/60 text-white font-semibold border border-blue-800/60 shadow-xs'
                   : 'text-zinc-400 hover:text-zinc-200 active:bg-zinc-900'
               )}
             >
               <div className="relative mb-0.5">
-                <Icon className={cn('w-4 h-4', isActive ? 'text-cyan-400' : 'text-zinc-400')} />
+                <Icon className={cn('w-4 h-4', isActive ? 'text-blue-400' : 'text-zinc-400')} />
 
                 {tab.id === 'terminal' && (
                   <>
                     {isRunning ? (
                       <span className="absolute -top-1 -right-1.5 flex h-2.5 w-2.5">
-                        <Loader2 className="w-2.5 h-2.5 animate-spin text-cyan-300" />
+                        <Loader2 className="w-2.5 h-2.5 animate-spin text-blue-400" />
                       </span>
                     ) : lastResult ? (
                       <span
                         className={cn(
                           'absolute -top-0.5 -right-1 w-2 h-2 rounded-full ring-2 ring-[#09090b]',
-                          lastResult.success ? 'bg-emerald-500' : 'bg-red-500'
+                          lastResult.success ? 'bg-blue-400' : 'bg-rose-500'
                         )}
                       />
                     ) : null}

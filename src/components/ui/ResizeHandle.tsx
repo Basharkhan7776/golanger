@@ -81,7 +81,7 @@ export const ResizeHandle: React.FC<ResizeHandleProps> = ({
             direction === 'vertical'
               ? 'w-[1px] h-full bg-zinc-800/80 group-hover:bg-zinc-500 group-hover:w-[2px]'
               : 'h-[1px] w-full bg-zinc-800/80 group-hover:bg-zinc-500 group-hover:h-[2px]',
-            isDragging && (direction === 'vertical' ? 'bg-cyan-400 w-[2px]' : 'bg-cyan-400 h-[2px]')
+            isDragging && (direction === 'vertical' ? 'bg-[#00ADD8] w-[2px]' : 'bg-[#00ADD8] h-[2px]')
           )}
         />
       </div>
