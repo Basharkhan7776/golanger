@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/flowcontrol/6
+
 import "testing"
 
 func LookupLength(s string, max int) bool {

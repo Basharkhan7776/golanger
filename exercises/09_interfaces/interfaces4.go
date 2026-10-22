@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/methods/15
+
 import "testing"
 
 func FormatType(item any) string {

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Slice_expressions
+
 import "testing"
 
 func MakeSliceWithCap(c int) []int {

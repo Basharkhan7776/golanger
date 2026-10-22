@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/concurrency/2
+
 import "testing"
 
 func ChannelPing() string {

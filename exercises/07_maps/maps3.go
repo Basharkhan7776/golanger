@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gobyexample.com/range
+
 import "testing"
 
 func RemoveKey(m map[string]int, key string) {

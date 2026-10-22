@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/strings#Split
+
 import (
 	"fmt"
 	"testing"

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Numeric_types
+
 import "fmt"
 
 func main() {

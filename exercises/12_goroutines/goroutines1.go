@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Go_statements
+
 import "testing"
 
 func LaunchGoroutine() bool {

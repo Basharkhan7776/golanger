@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Constant_declarations
+
 import "fmt"
 
 const (

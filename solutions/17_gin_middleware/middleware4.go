@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+
 import (
 	"net/http"
 	"net/http/httptest"

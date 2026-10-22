@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/github.com/gin-gonic/gin#Context.Error
+
 import (
 	"errors"
 	"net/http"

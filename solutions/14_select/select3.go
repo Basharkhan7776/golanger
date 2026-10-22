@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/time#After
+
 import "testing"
 
 func TryReceive(ch <-chan int) (int, bool) {

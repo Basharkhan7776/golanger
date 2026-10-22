@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/sync/atomic
+
 import (
 	"sync"
 	"sync/atomic"

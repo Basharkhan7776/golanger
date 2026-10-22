@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/moretypes/25
+
 import "testing"
 
 func MakeCounter() func() int {

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/blog/go1.13-errors
+
 import (
 	"fmt"
 	"testing"

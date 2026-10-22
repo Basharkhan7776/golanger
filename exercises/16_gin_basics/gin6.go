@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gin-gonic.com/docs/examples/grouping-routes/
+
 import (
 	"net/http"
 	"net/http/httptest"

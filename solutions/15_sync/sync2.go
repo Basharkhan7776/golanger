@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/doc/effective_go#defer
+
 import (
 	"sync"
 	"testing"

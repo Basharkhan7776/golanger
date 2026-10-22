@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Break_statements
+
 import (
 	"strings"
 	"testing"

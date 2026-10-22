@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#For_statements
+
 import "testing"
 
 func Generator(n int) <-chan int {

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#If_statements
+
 import "testing"
 
 func CheckNumber(n int) string {

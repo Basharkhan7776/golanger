@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/fmt#hdr-Printing
+
 import "fmt"
 
 func main() {

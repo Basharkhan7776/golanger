@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gin-gonic.com/docs/examples/graceful-restart-or-stop/
+
 import (
 	"context"
 	"net/http"

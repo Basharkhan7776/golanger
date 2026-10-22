@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gobyexample.com/custom-errors
+
 import (
 	"errors"
 	"testing"

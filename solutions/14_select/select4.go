@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/blog/pipelines
+
 import (
 	"sync/atomic"
 	"testing"

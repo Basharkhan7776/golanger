@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gin-gonic.com/docs/examples/model-binding-and-validation/
+
 import (
 	"bytes"
 	"net/http"

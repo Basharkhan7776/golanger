@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Function_declarations
+
 import "testing"
 
 // TODO: Implement Add(a, b int) int

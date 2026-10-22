@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/builtin#append
+
 import "testing"
 
 func SubSlice(nums []int, start, end int) []int {

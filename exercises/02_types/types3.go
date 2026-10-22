@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/blog/strings
+
 import "testing"
 
 func DescribeType(v any) string {

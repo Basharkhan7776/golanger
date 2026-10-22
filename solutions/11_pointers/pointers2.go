@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/doc/effective_go#pointers_vs_values
+
 import "testing"
 
 type Counter struct {

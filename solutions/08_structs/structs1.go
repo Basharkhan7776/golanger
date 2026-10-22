@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Struct_types
+
 import "testing"
 
 type User struct {

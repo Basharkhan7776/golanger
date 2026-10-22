@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gobyexample.com/rate-limiting
+
 import (
 	"testing"
 	"time"

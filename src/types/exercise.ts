@@ -1,5 +1,12 @@
 export type ExerciseMode = 'run' | 'test';
 
+export interface ExerciseReference {
+  title: string;
+  url: string;
+  description?: string;
+  isOfficial?: boolean;
+}
+
 export interface Exercise {
   id: string;
   title: string;
@@ -15,6 +22,7 @@ export interface Exercise {
   hint: string;
   starterCode: string;
   solutionCode: string;
+  references?: ExerciseReference[];
 }
 
 export interface UserExerciseState {

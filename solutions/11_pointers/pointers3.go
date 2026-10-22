@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Comparison_operators
+
 import "testing"
 
 func SafeDeref(p *int) int {

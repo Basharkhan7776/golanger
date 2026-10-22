@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gobyexample.com/worker-pools
+
 import (
 	"sync"
 	"testing"

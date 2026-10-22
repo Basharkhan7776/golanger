@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/net/http#pkg-constants
+
 import (
 	"net/http"
 	"net/http/httptest"

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gin-gonic.com/docs/examples/goroutines-inside-a-middleware/
+
 import (
 	"net/http"
 	"net/http/httptest"

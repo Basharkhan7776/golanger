@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://gin-gonic.com/docs/examples/querystring-param/
+
 import (
 	"net/http"
 	"net/http/httptest"

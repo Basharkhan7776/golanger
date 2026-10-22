@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://pkg.go.dev/github.com/gorilla/websocket#Upgrader
+
 import (
 	"net/http"
 	"net/http/httptest"

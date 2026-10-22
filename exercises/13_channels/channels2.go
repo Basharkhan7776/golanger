@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/concurrency/3
+
 import "testing"
 
 func BufferedChannel() []int {

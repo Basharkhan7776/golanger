@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Address_operators
+
 import "testing"
 
 func SetHundred(ptr *int) {

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/blog/slices-intro
+
 import "testing"
 
 func BuildSlice() []int {

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Variable_declarations
+
 import "fmt"
 
 func main() {

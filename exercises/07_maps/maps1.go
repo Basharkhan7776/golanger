@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Map_types
+
 import "testing"
 
 func CountWords(words []string) map[string]int {

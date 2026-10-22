@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/methods/1
+
 import "testing"
 
 type Rectangle struct {

@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/basics/7
+
 import "testing"
 
 func MinMax(nums []int) (min int, max int) {

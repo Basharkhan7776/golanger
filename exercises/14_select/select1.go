@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/concurrency/5
+
 import "testing"
 
 func SelectFirst(ch1, ch2 <-chan string) string {

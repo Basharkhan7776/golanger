@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/concurrency/4
+
 import "testing"
 
 // TODO: Define Producer(out chan<- int, val int)

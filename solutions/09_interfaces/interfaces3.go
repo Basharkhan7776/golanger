@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/tour/methods/14
+
 import "testing"
 
 func SafeString(val any) string {

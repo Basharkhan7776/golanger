@@ -1,5 +1,7 @@
 package main
 
+// Official Reference: https://go.dev/ref/spec#Interface_types
+
 import (
 	"math"
 	"testing"
