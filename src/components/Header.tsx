@@ -117,7 +117,7 @@ export const Header: React.FC = () => {
           <Button
             variant="blue"
             size="sm"
-            onClick={runCode}
+            onClick={() => runCode()}
             disabled={isRunning}
             className="gap-1.5 px-3 font-semibold"
           >
@@ -225,7 +225,7 @@ export const Header: React.FC = () => {
         <Button
           variant="blue"
           size="sm"
-          onClick={runCode}
+          onClick={() => runCode()}
           disabled={isRunning}
           className="gap-1 px-2.5 h-7 text-xs font-semibold"
         >

@@ -6,44 +6,28 @@ export async function executeGoCode(code: string, mode: ExerciseMode): Promise<C
   const startTime = performance.now();
   const isTestMode = mode === 'test' || code.includes('func Test') || code.includes('*testing.T');
 
-  // Check if running in local dev environment with local compiler plugin
-  const isLocalHost = typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  // Attempt local compiler endpoint first (provided by Vite dev server plugin)
+  try {
+    const localResp = await fetch('/api/compile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code, isTest: isTestMode }),
+    });
 
-  if (isLocalHost) {
-    try {
-      const localResp = await fetch('/api/compile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, isTest: isTestMode }),
-      });
+    if (localResp.ok) {
+      const data = await localResp.json();
+      const duration = Math.round(performance.now() - startTime);
 
-      if (localResp.ok) {
-        const data = await localResp.json();
-        const duration = Math.round(performance.now() - startTime);
-        let passed = Boolean(data.success);
-
-        if (isTestMode) {
-          const combined = `${data.stdout || ''} ${data.stderr || ''}`;
-          if (combined.includes('FAIL') || combined.includes('FAIL:')) {
-            passed = false;
-          }
-          if (combined.includes('PASS') || combined.includes('ok  \t')) {
-            passed = true;
-          }
-        }
-
-        return {
-          success: passed,
-          stdout: data.stdout || '',
-          stderr: data.stderr || '',
-          exitDetail: data.exitDetail || (passed ? 'Exited with code 0' : 'Execution failed'),
-          executionTimeMs: duration,
-        };
-      }
-    } catch {
-      // If local compiler endpoint is unreachable, fallback to playground API
+      return {
+        success: Boolean(data.success),
+        stdout: data.stdout || '',
+        stderr: data.stderr || '',
+        exitDetail: data.exitDetail || (data.success ? 'Exited with status 0' : 'Execution failed'),
+        executionTimeMs: duration,
+      };
     }
+  } catch {
+    // If local compiler endpoint is unreachable (e.g. static preview without backend), fallback to playground API
   }
 
   // Fallback to official Go Playground API
@@ -77,12 +61,9 @@ export async function executeGoCode(code: string, mode: ExerciseMode): Promise<C
 
     if (isTestMode) {
       const combined = `${stdout} ${stderr}`;
-      if (combined.includes('FAIL')) {
-        passed = false;
-      }
-      if (combined.includes('PASS') || combined.includes('ok  \t')) {
-        passed = true;
-      }
+      const hasFail = combined.includes('--- FAIL:') || combined.includes('FAIL\t') || combined.includes('\nFAIL');
+      const hasPass = combined.includes('PASS\n') || combined.includes('--- PASS:');
+      passed = !stderr && !hasFail && hasPass;
     }
 
     return {

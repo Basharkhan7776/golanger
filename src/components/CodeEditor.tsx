@@ -46,6 +46,25 @@ export const CodeEditor: React.FC = () => {
 
   const { isKeyboardOpen, viewportHeight, dismissKeyboard } = useKeyboardViewport();
   const editorRef = useRef<any>(null);
+
+  const runCodeRef = useRef(runCode);
+  runCodeRef.current = runCode;
+
+  const nextExerciseRef = useRef(nextExercise);
+  nextExerciseRef.current = nextExercise;
+
+  const prevExerciseRef = useRef(prevExercise);
+  prevExerciseRef.current = prevExercise;
+
+  const toggleSidebarRef = useRef(toggleSidebar);
+  toggleSidebarRef.current = toggleSidebar;
+
+  const toggleTerminalRef = useRef(toggleTerminal);
+  toggleTerminalRef.current = toggleTerminal;
+
+  const setShowCommandPaletteRef = useRef(setShowCommandPalette);
+  setShowCommandPaletteRef.current = setShowCommandPalette;
+
   const lastSymbolActionRef = useRef<number>(0);
   const isInteractingWithToolbarRef = useRef(false);
   const [isMobile, setIsMobile] = useState(() =>
@@ -327,32 +346,33 @@ export const CodeEditor: React.FC = () => {
 
     monaco.editor.setTheme('coss-dark');
 
-    // Run code shortcut: Cmd+Enter / Ctrl+Enter
+    // Run code shortcut: Cmd+Enter / Ctrl+Enter (extracts live buffer directly)
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
-      runCode();
+      const liveCode = editor.getValue();
+      runCodeRef.current(liveCode);
     });
 
     // Sidebar toggle shortcut: Cmd+B / Ctrl+B
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyB, () => {
-      toggleSidebar();
+      toggleSidebarRef.current();
     });
 
     // Terminal toggle shortcut: Cmd+J / Ctrl+J
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyJ, () => {
-      toggleTerminal();
+      toggleTerminalRef.current();
     });
 
     // Search shortcut: Cmd+K / Ctrl+K
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyK, () => {
-      setShowCommandPalette(true);
+      setShowCommandPaletteRef.current(true);
     });
 
     // Next / Prev shortcuts
     editor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.RightArrow, () => {
-      nextExercise();
+      nextExerciseRef.current();
     });
     editor.addCommand(monaco.KeyMod.Alt | monaco.KeyCode.LeftArrow, () => {
-      prevExercise();
+      prevExerciseRef.current();
     });
   };
 
@@ -421,7 +441,7 @@ export const CodeEditor: React.FC = () => {
             <Button
               variant="blue"
               size="sm"
-              onClick={runCode}
+              onClick={() => runCode(editorRef.current?.getValue() ?? currentCode)}
               disabled={isRunning}
               className="gap-1.5 px-2.5 h-6 text-[11px] font-semibold"
             >
@@ -438,6 +458,7 @@ export const CodeEditor: React.FC = () => {
           height="100%"
           width="100%"
           language="go"
+          path={currentExercise.filename}
           value={currentCode}
           onChange={val => updateCode(val || '')}
           onMount={handleEditorDidMount}

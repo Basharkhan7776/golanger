@@ -38,7 +38,7 @@ interface GolangContextValue {
   toggleCompleted: (id: string) => void;
   bookmarkedIds: Set<string>;
   toggleBookmark: (id: string) => void;
-  runCode: () => Promise<void>;
+  runCode: (codeOverride?: string) => Promise<void>;
   isRunning: boolean;
   lastResult: CompileResult | null;
   clearLastResult: () => void;
@@ -229,7 +229,7 @@ export function GolangProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const runCode = useCallback(async () => {
+  const runCode = useCallback(async (codeOverride?: string) => {
     if (isRunning) return;
     setIsRunning(true);
     setLastResult(null);
@@ -238,8 +238,13 @@ export function GolangProvider({ children }: { children: React.ReactNode }) {
       setMobileTab('terminal');
     }
 
+    const codeToRun = codeOverride !== undefined ? codeOverride : currentCode;
+    if (codeOverride !== undefined && codeOverride !== currentCode) {
+      updateCode(codeOverride);
+    }
+
     try {
-      const result = await executeGoCode(currentCode, currentExercise.mode);
+      const result = await executeGoCode(codeToRun, currentExercise.mode);
       setLastResult(result);
 
       if (result.success) {
@@ -273,7 +278,7 @@ export function GolangProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setIsRunning(false);
     }
-  }, [currentCode, currentExercise.id, currentExercise.mode, isRunning]);
+  }, [currentCode, currentExercise.id, currentExercise.mode, isRunning, updateCode]);
 
   const resetAllProgress = useCallback(() => {
     clearAllLocalProgress();

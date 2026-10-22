@@ -36,14 +36,38 @@ function localGoRunnerPlugin(): Plugin {
               ? ['test', '-v', '-count=1', fileName]
               : ['run', fileName];
 
-            const goProc = spawn('go', goArgs, { cwd: runnerDir });
+            const goProc = spawn('go', goArgs, { cwd: runnerDir, detached: true });
             let goStdout = '';
             let goStderr = '';
+
+            const TIMEOUT_MS = 6000;
+            let killedDueToTimeout = false;
+
+            const killProcessTree = () => {
+              try {
+                if (goProc.pid) {
+                  process.kill(-goProc.pid, 'SIGKILL');
+                }
+              } catch {
+                try {
+                  goProc.kill('SIGKILL');
+                } catch {}
+              }
+            };
+
+            const timer = setTimeout(() => {
+              killedDueToTimeout = true;
+              killProcessTree();
+            }, TIMEOUT_MS);
 
             goProc.stdout.on('data', d => { goStdout += d.toString(); });
             goProc.stderr.on('data', d => { goStderr += d.toString(); });
 
+            let cleanedUp = false;
             const cleanup = () => {
+              if (cleanedUp) return;
+              cleanedUp = true;
+              clearTimeout(timer);
               try {
                 if (fs.existsSync(filePath)) {
                   fs.unlinkSync(filePath);
@@ -51,18 +75,33 @@ function localGoRunnerPlugin(): Plugin {
               } catch {}
             };
 
+            res.on('close', () => {
+              if (!res.writableEnded) {
+                cleanup();
+                killProcessTree();
+              }
+            });
+
             goProc.on('close', codeExit => {
               cleanup();
+
+              if (killedDueToTimeout) {
+                res.setHeader('Content-Type', 'application/json');
+                return res.end(JSON.stringify({
+                  success: false,
+                  stdout: goStdout,
+                  stderr: `Execution timed out (${TIMEOUT_MS / 1000}s limit). Please check for infinite loops or channel deadlocks.\n${goStderr}`,
+                  exitDetail: 'Timeout exceeded'
+                }));
+              }
+
               const combined = `${goStdout} ${goStderr}`;
+              // Canonical Go status: exit code 0 means success
               let passed = codeExit === 0;
 
               if (isTestMode) {
-                if (combined.includes('FAIL') || combined.includes('FAIL:')) {
-                  passed = false;
-                }
-                if (combined.includes('PASS') || combined.includes('ok  \t')) {
-                  passed = true;
-                }
+                // In Go test, exit code 0 means all tests passed. Any failure exits non-zero and outputs '--- FAIL:'
+                passed = codeExit === 0 && !combined.includes('--- FAIL:');
               }
 
               res.setHeader('Content-Type', 'application/json');
