@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:wasm": "cd wasm && GOOS=js GOARCH=wasm go build -ldflags=\"-s -w\" -o ../public/wasm/yaegi.wasm .",
     "preview": "vite preview"
   },
   "dependencies": {

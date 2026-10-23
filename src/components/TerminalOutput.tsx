@@ -11,6 +11,7 @@ import {
   Loader2,
   ZoomIn,
   ZoomOut,
+  Cpu,
 } from 'lucide-react';
 import { useGolang } from '../context/GolangContext';
 import { parseAnsi } from '../lib/ansi';
@@ -108,6 +109,20 @@ export const TerminalOutput: React.FC<TerminalOutputProps> = ({
             <span className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500">
               <Clock className="w-3 h-3" />
               {formatTime(lastResult.executionTimeMs)}
+            </span>
+          )}
+
+          {lastResult?.engine && (
+            <span
+              className={cn(
+                'hidden sm:inline-flex items-center gap-1 text-[10px] font-mono px-1.5 py-0.5 rounded border',
+                lastResult.engine === 'wasm'
+                  ? 'bg-blue-950/50 text-blue-300 border-blue-800/40'
+                  : 'bg-zinc-850 text-zinc-400 border-zinc-800'
+              )}
+            >
+              <Cpu className="w-2.5 h-2.5 text-blue-400" />
+              {lastResult.engine === 'wasm' ? 'WASM' : lastResult.engine === 'local' ? 'Local' : 'Serverless'}
             </span>
           )}
         </div>

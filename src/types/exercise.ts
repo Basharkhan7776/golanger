@@ -40,6 +40,7 @@ export interface CompileResult {
   stderr: string;
   exitDetail?: string;
   executionTimeMs?: number;
+  engine?: 'local' | 'wasm' | 'serverless';
 }
 
 export interface AppSettings {
